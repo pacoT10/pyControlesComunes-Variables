@@ -16,7 +16,7 @@ namespace pyControlesComunes_Variables
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmRegistrarTarea());
+            Application.Run(new frmInicioDeSesion());
         }
     }
 }

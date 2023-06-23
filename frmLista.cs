@@ -10,20 +10,14 @@ using System.Windows.Forms;
 
 namespace pyControlesComunes_Variables
 {
-    public partial class frmPrincipal : Form
+    public partial class frmLista : Form
     {
-        public frmPrincipal()
+        public frmLista()
         {
             InitializeComponent();
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            frmRegistrarTarea frmRegistrarTarea = new frmRegistrarTarea();
-            frmRegistrarTarea.ShowDialog();
-        }
-
-        private void frmPrincipal_Load(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

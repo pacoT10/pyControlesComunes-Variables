@@ -52,5 +52,10 @@ namespace pyControlesComunes_Variables
                 }
             }
         }
+
+        private void frmInicioDeSesion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

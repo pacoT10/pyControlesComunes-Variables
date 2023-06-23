@@ -27,11 +27,11 @@ namespace pyControlesComunes_Variables
 
         private void frmRegistrarTarea_Load(object sender, EventArgs e)
         {
-            //cboTareas.Items.Add("Tarea 1");
-            //cboTareas.Items.Add("Tarea 2");
-            //cboTareas.Items.Add("Tarea 3");
-            //cboTareas.Items.Add("Tarea 4");
-            //cboTareas.Items.Add("Tarea 5");
+            cboTareas.Items.Add("Tarea 1");
+            cboTareas.Items.Add("Tarea 2");
+            cboTareas.Items.Add("Tarea 3");
+            cboTareas.Items.Add("Tarea 4");
+            cboTareas.Items.Add("Tarea 5");
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace pyControlesComunes_Variables
                     // != "" --- significa distinto de texto vacio
                     if (txtDetalle.Text != "")
                     {
-                        //MessageBox.Show("Vamos a grabar...");
+                        MessageBox.Show("Vamos a grabar...");
 
                         vectorRegistroActividad[indiceRegistro] =
                             dtpFecha.Value + " " +
@@ -84,8 +84,8 @@ namespace pyControlesComunes_Variables
             // vectorActividad[2] = "programar";
 
             // //mostre un dato que no sea null
-            //// listBox1.Items.Add(vectorActividad[0]);
-            // listBox1.Items.Add(vectorActividad[2]);
+            listBox1.Items.Add(vectorActividad[0]);
+            listBox1.Items.Add(vectorActividad[2]);
 
             //recorrer un vector de inicio a fin
             int indice = 0;
@@ -132,5 +132,12 @@ namespace pyControlesComunes_Variables
                 listBox1.Items.Add(vectorActividad[indice]);
             }
         }
+
+        private void cmdMostrar_Click(object sender, EventArgs e)
+        {
+            frmLista frmLista = new frmLista();
+            frmLista.ShowDialog();
+        }
     }
+
 }

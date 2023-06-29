@@ -27,5 +27,11 @@ namespace pyControlesComunes_Variables
         {
 
         }
+
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            frmLista frmLista = new frmLista();
+            frmLista.ShowDialog();
+        }
     }
 }

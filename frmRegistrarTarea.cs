@@ -18,12 +18,11 @@ namespace pyControlesComunes_Variables
         }
 
         //zona de declaracion global para el formulario
-        string[] vectorActividad = new string[10];
-        //todos los elementos están en NULL
-
-        string[] vectorRegistroActividad = new string[4];
-
-        int indiceRegistro = 0;
+        readonly int indiceRegistro = 0;
+        frmLista lista = new frmLista();
+        
+        int indiceFilaR;
+        
 
         private void frmRegistrarTarea_Load(object sender, EventArgs e)
         {
@@ -36,25 +35,58 @@ namespace pyControlesComunes_Variables
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            //para obtener el valor del control se usa VALUE
-            //TODAY viene de la libreria de .net y toma la fecha del equipo 
+            string varTareas = "";
+            string varReunion = "";
             if (dtpFecha.Value >= DateTime.Today)
             {
-                //Selectedindex es numero que indicar el elemento que tenes seleccionado en el combo
-                //si es -1 quiere decir que no hay elemento seleccionado
+                
                 if (cboTipoActividad.SelectedIndex != -1)
                 {
-                    // != "" --- significa distinto de texto vacio
+                    
                     if (txtDetalle.Text != "")
                     {
                         MessageBox.Show("Vamos a grabar...");
 
-                        vectorRegistroActividad[indiceRegistro] =
-                            dtpFecha.Value + " " +
-                            cboTipoActividad.Text + " " +
-                            txtDetalle.Text ;
 
-                        indiceRegistro++;
+                        if (optSI.Checked == true)
+                        {
+                            varReunion = "Si";
+                        }
+                        else
+                        {
+                            varReunion = "No";
+                        }
+                        if (chkDebate.Checked)
+                        {
+                            varTareas = "Debate, ";
+                        }
+                        if (chkInvestigacion.Checked)
+                        {
+                            varTareas = varTareas + "Investigacion, ";
+                        }
+                        if (chkNotasReunion.Checked)
+                        {
+                            varTareas = varTareas + "Notas, ";
+
+                        }
+                        if (chkrepositorio.Checked)
+                        {
+                            varTareas = varTareas + "Repositorio, ";
+                        }
+
+                        lista.matrizTareas[indiceFilaR, 0] = dtpFecha.Value.ToString();
+                        lista.matrizTareas[indiceFilaR,1] = cboTipoActividad.Text;
+                        lista.matrizTareas[indiceFilaR,2] = txtDetalle.Text;
+                        lista.matrizTareas[indiceFilaR, 3] = varReunion;
+                        lista.matrizTareas[indiceFilaR,4] = varTareas;
+
+                        indiceFilaR++;
+
+                        if (indiceFilaR==lista.matrizTareas.GetLength(0))
+                        {
+                            cmdGrabar.Enabled = false;
+                        }
+                        
                     }
                     else
                     {
@@ -78,65 +110,15 @@ namespace pyControlesComunes_Variables
             }
         }
 
-        private void cmdVerVector_Click(object sender, EventArgs e)
-        {
-            // //recorrer un vector
-            // vectorActividad[2] = "programar";
-
-            // //mostre un dato que no sea null
-            listBox1.Items.Add(vectorActividad[0]);
-            listBox1.Items.Add(vectorActividad[2]);
-
-            //recorrer un vector de inicio a fin
-            int indice = 0;
-
-            while (indice <= 9)
-            {
-                listBox1.Items.Add(vectorActividad[indice]);
-
-
-                indice = indice + 1;
-            }
-        }
-     
-
-        private void btnCargarVector_Click(object sender, EventArgs e)
-        {
-            //recorrer un vector de inicio a fin
-            int indice = 0;
-
-            while (indice <= 9)
-            {
-                vectorActividad[indice] = "Posición del índice " + indice;
-
-                indice = indice + 1;
-            }
-        }
-
-        private void btnVerVector2_Click(object sender, EventArgs e)
-        {
-            int indice = 0;
-
-            while (indice < vectorActividad.Length)
-            {
-                listBox1.Items.Add(vectorActividad[indice]);
-
-                indice++;
-            }
-        }
-
-        private void btnVerVector3_Click(object sender, EventArgs e)
-        {
-            for (int indice = 0; indice < vectorActividad.Length; indice++)
-            {
-                listBox1.Items.Add(vectorActividad[indice]);
-            }
-        }
-
         private void cmdMostrar_Click(object sender, EventArgs e)
         {
-            frmLista frmLista = new frmLista();
-            frmLista.ShowDialog();
+            lista.ShowDialog();
+            this.Hide();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
